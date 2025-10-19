@@ -1,0 +1,182 @@
+/* myblog/themes/icarus/source/css/custom.css */
+
+/* 1. 全局背景图设置 - 优化版本 */
+body {
+    background-image: url('/img/background.png'); /* 确保图片路径正确 */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* 2. 核心：三栏和导航栏磨砂玻璃效果优化 */
+.card, .widget, .navbar, .footer {
+    background: rgba(255, 255, 255, 0.92) !important; /* 提高不透明度至92%，提升可读性 */
+    backdrop-filter: blur(15px) saturate(180%); /* 增加饱和度和模糊度 */
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 16px; /* 增大圆角，更现代 */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04); /* 多层阴影，更有层次感 */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* 添加细微边框增强质感 */
+}
+
+/* 导航栏特殊处理 */
+.navbar {
+    border-radius: 0 0 16px 16px; /* 仅底部圆角 */
+    margin-bottom: 2rem; /* 增加与内容的间距 */
+}
+
+/* 3. 文章卡片特别优化 - 根据您的图片调整 */
+.article-content {
+    line-height: 1.8; /* 增加行高，提升阅读体验 */
+    font-size: 1.05rem; /* 稍微增大字体 */
+}
+
+.article-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #2c3e50; /* 深蓝色标题，更专业 */
+    border-bottom: 2px solid #3498db; /* 标题下划线 */
+    padding-bottom: 0.5rem;
+}
+
+/* 4. 标签样式美化 - 根据图片中的 # Re Fresher 标签 */
+.tag {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* 5. 侧边栏部件优化 */
+.widget {
+    margin-bottom: 1.5rem;
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #34495e;
+    border-left: 4px solid #e74c3c; /* 左侧装饰线 */
+    padding-left: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+/* 6. 文章元信息样式（发布时间等） */
+.article-meta {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.article-meta i {
+    margin-right: 0.3rem;
+    color: #95a5a6;
+}
+
+/* 7. 暗色模式适配优化 */
+[data-theme='dark'] .card,
+[data-theme='dark'] .widget,
+[data-theme='dark'] .navbar,
+[data-theme='dark'] .footer {
+    background: rgba(30, 30, 30, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .article-title {
+    color: #ecf0f1;
+    border-bottom-color: #3498db;
+}
+
+[data-theme='dark'] .widget-title {
+    color: #bdc3c7;
+}
+
+/* 8. 链接悬停效果优化 */
+a {
+    transition: all 0.3s ease;
+    color: #3498db; /* 统一的蓝色主题色 */
+    text-decoration: none;
+    position: relative;
+}
+
+a:hover {
+    color: #e74c3c; /* 悬停时变为红色 */
+}
+
+/* 为导航链接添加下划线动画 */
+.navbar-menu a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #e74c3c;
+    transition: width 0.3s ease;
+}
+
+.navbar-menu a:hover:after {
+    width: 100%;
+}
+
+/* 9. 代码块样式优化（适合CTF内容展示） */
+pre {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+code {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* 10. 响应式优化 */
+@media (max-width: 768px) {
+    .card, .widget {
+        border-radius: 12px;
+        margin: 0.5rem;
+    }
+    
+    .navbar {
+        border-radius: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+/* 11. 滚动条美化 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
