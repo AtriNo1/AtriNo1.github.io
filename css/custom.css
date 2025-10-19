@@ -2,7 +2,7 @@
 
 /* 1. 全局背景图设置 - 优化版本 */
 body {
-    background-image: url('/img/background.png'); /* 确保图片路径正确 */
+    background-image: url('/img/bg.png'); /* 确保图片路径正确 */
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
