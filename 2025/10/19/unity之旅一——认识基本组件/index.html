@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Atri的unity之旅(1) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在本章，我会介绍unity组件基类MonoBehaviour(生命周期函数),组件:Transform,Component相关语法,CharacterController,Rigidbody。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Atri的unity之旅(1)">
+<meta property="og:url" content="http://example.com/2025/10/19/unity%E4%B9%8B%E6%97%85%E4%B8%80%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在本章，我会介绍unity组件基类MonoBehaviour(生命周期函数),组件:Transform,Component相关语法,CharacterController,Rigidbody。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-19T04:00:02.000Z">
+<meta property="article:modified_time" content="2025-10-20T12:18:21.716Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="unity">
+<meta property="article:tag" content="组件">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-unity之旅一——认识基本组件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/10/19/unity%E4%B9%8B%E6%97%85%E4%B8%80%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6/" class="article-date">
+  <time class="dt-published" datetime="2025-10-19T04:00:02.000Z" itemprop="datePublished">2025-10-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/unity/">unity</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Atri的unity之旅(1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <!-- 这里是摘要部分，以上内容会在首页显示 -->
+<p>在本章，我会介绍unity组件基类MonoBehaviour(生命周期函数),组件:Transform,Component相关语法,CharacterController,Rigidbody。</p>
+<span id="more"></span>
+<!-- 这里是文章的剩余内容 -->
+
+<h2 id="MonoBehaviour-基类与生命周期"><a href="#MonoBehaviour-基类与生命周期" class="headerlink" title="MonoBehaviour 基类与生命周期"></a>MonoBehaviour 基类与生命周期</h2><p>生命周期函数是指那些在游戏对象的生命周期内由Unity引擎自动调用的特殊函数。这些函数按照特定的顺序执行，允许开发者在游戏对象被创建、激活、更新或销毁时执行代码。</p>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Awake ；脚本实例被加载时调用，​无论脚本是否启用。用于初始化变量或游戏状态。</span><br><span class="line">OnEnable:当脚本被启用或激活时调用。​可多次执行​（如物体反复激活/禁用）。</span><br><span class="line">Start:在第一次 Update 调用前，且脚本启用时执行。常用于依赖其他组件完成的初始化。</span><br></pre></td></tr></table></figure>
+<h4 id="物理模拟"><a href="#物理模拟" class="headerlink" title="物理模拟"></a>物理模拟</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FixedUpdate：在固定的时间间隔​（默认0.02秒）调用，与帧率无关。​必须用于物理计算​（如力、碰撞）。</span><br><span class="line">OnTrigger[Enter,Stay,Exit]:当碰撞体进入/停留/离开触发器时调用。</span><br><span class="line">OnCollision[Enter,Stay,Exit]：当发生碰撞时调用。</span><br><span class="line">tips：OnCollisionEnter方法必须是在两个碰撞物体都不勾选isTrigger的前提下才能进入，反之只要勾选一个isTrigger那么就能进入OnTriggerEnter方法。</span><br></pre></td></tr></table></figure>
+<h4 id="游戏逻辑"><a href="#游戏逻辑" class="headerlink" title="游戏逻辑"></a>游戏逻辑</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Update：每帧调用一次，是游戏核心逻辑（如输入检测、非物理移动）的主要位置。</span><br><span class="line">LateUpdate：在所有 Update 执行完毕后调用。常用于相机跟随，确保目标物体已移动完毕。</span><br></pre></td></tr></table></figure>
+<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OnDisable：当脚本被禁用或物体变为非激活时调用。用于清理当前状态。</span><br><span class="line">OnDestroy：当物体被销毁时调用。用于释放资源、清理内存。</span><br></pre></td></tr></table></figure>
+<h2 id="transform-世界的坐标"><a href="#transform-世界的坐标" class="headerlink" title="transform 世界的坐标"></a>transform 世界的坐标</h2><h4 id="位置；"><a href="#位置；" class="headerlink" title="位置；"></a>位置；</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">transform.position = new Vector();</span><br><span class="line">transform.localPosition = new Vector3();</span><br><span class="line">tips：记得区别世界坐标与相对坐标</span><br></pre></td></tr></table></figure>
+<h4 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置绝对朝向：transform.rotation = Quaternion.Euler();</span><br><span class="line">相对方向旋转：transform.localRotation = Quaternion.Euler();</span><br><span class="line">对应的欧拉角表示为：</span><br><span class="line">transform.eulerAngles = new Vector3();</span><br><span class="line">transform.localeulerAngles = new Vector3();</span><br></pre></td></tr></table></figure>
+<h4 id="放缩"><a href="#放缩" class="headerlink" title="放缩"></a>放缩</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform.localScale = new Vector3();</span><br></pre></td></tr></table></figure>
+<h4 id="朝向与方向"><a href="#朝向与方向" class="headerlink" title="朝向与方向"></a>朝向与方向</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform.[up,forward,right]：是以物体自身为坐标轴重建的正方向。</span><br></pre></td></tr></table></figure>
+<h4 id="父与子"><a href="#父与子" class="headerlink" title="父与子"></a>父与子</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">transform.SetParent(Transform parent, bool worldPositionStays = true);</span><br><span class="line">Transform top = transform.root;//设置top为最高层级</span><br></pre></td></tr></table></figure>
+<h4 id="坐标系转换"><a href="#坐标系转换" class="headerlink" title="坐标系转换"></a>坐标系转换</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vector worldpoint=transfom.TransformPoint(localpoint)；//将相对this的局部坐标转化为世界坐标</span><br><span class="line">Vector3 localPoint = A.transform.InverseTransformPoint(worldPoint);//将世界坐标转化为相对于A的局部坐标</span><br><span class="line">Vector3 worldDirection = TransformDirection(localDirection);//将局部方向转换为世界方向</span><br><span class="line">Vector3 localDirection = InverseTransformDirection(worldDirection);//transformDirection的逆方向</span><br><span class="line">TransformVector(Vector3 localVector)/InverseTransformVector(Vector3 worldVector)//效果同上，但是会考虑缩放</span><br></pre></td></tr></table></figure>
+<h4 id="移动与旋转"><a href="#移动与旋转" class="headerlink" title="移动与旋转"></a>移动与旋转</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">transform.Translate(Vector3.forward * Time.deltaTime * speed);//// 默认为 Space.Self</span><br><span class="line">transform.Translate(Vector3.right * 1f, Space.World);//世界坐标下的移动</span><br><span class="line">transform.Rotate();//方向*度数（默认为本地坐标）</span><br><span class="line">LookAt(Transform target)/LookAt(Vector3 worldPosition)//看向物体</span><br><span class="line">Quaternion targetRot = Quaternion.LookRotation(targetPos - transform.position);//生成四元数朝向（用于平滑旋转或插值）</span><br><span class="line">transform.SetPositionAndRotation(newPos, Quaternion.Euler());//同时设置位置与旋转</span><br></pre></td></tr></table></figure>
+<h2 id="Component-组件"><a href="#Component-组件" class="headerlink" title="Component 组件"></a>Component 组件</h2><h4 id="获取组件"><a href="#获取组件" class="headerlink" title="获取组件"></a>获取组件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">例：Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();//获取某个游戏对象的组件</span><br><span class="line">例：Transform childTransform = gameObject.transform.GetChild(0).GetComponent&lt;Transform&gt;();//获取子对象的组件</span><br></pre></td></tr></table></figure>
+<h4 id="添加组件"><a href="#添加组件" class="headerlink" title="添加组件"></a>添加组件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Rigidbody rb = gameObject.AddComponent&lt;Rigidbody&gt;()//为物体添加组件</span><br><span class="line">MyScript myScript = gameObject.AddComponent&lt;MyScript&gt;();//为物体添加脚本</span><br></pre></td></tr></table></figure>
+<h4 id="移除组件"><a href="#移除组件" class="headerlink" title="移除组件"></a>移除组件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Destroy(gameObject.GetComponent&lt;Collider&gt;(), time);//time表示销毁延迟（可省）</span><br></pre></td></tr></table></figure>
+<h4 id="启用与禁用"><a href="#启用与禁用" class="headerlink" title="启用与禁用"></a>启用与禁用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Component.enabled=(bool);</span><br></pre></td></tr></table></figure>
+<h4 id="通过类型获取组件"><a href="#通过类型获取组件" class="headerlink" title="通过类型获取组件"></a>通过类型获取组件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Collider[] colliders = gameObject.GetComponents&lt;Collider&gt;();//获取所有collider组件</span><br><span class="line">Rigidbody rbInChildren = gameObject.GetComponentInChildren&lt;Rigidbody&gt;();//获取子物体组件</span><br><span class="line">TryGetComponent//尝试获取组件(if)</span><br></pre></td></tr></table></figure>
+<h2 id="Rigidbody-刚体"><a href="#Rigidbody-刚体" class="headerlink" title="Rigidbody 刚体"></a>Rigidbody 刚体</h2><h4 id="物理力相关"><a href="#物理力相关" class="headerlink" title="物理力相关"></a>物理力相关</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AddForce//施加力，可以指定力的类型</span><br><span class="line">Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">Vector3 force = new Vector3(10f, 0f, 0f); //设置力的方向</span><br><span class="line">rb.AddForce(force,ForceMode.Impulse);</span><br><span class="line">//四种ForceMode：Force,Acceleraton,Impulse,VelocityChange</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AddTorque//添加扭矩用于模拟旋转</span><br><span class="line">Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">Vector3 torque = new Vector3(0f, 10f, 0f); // 沿 Y 轴的旋转</span><br><span class="line">rb.AddTorque(torque);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AddRelativeForce//添加本地系力</span><br><span class="line">Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">Vector3 localForce = new Vector3(10f, 0f, 0f); // 在本地空间内的力</span><br><span class="line">rb.AddRelativeForce(localForce);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AddRelativeTorque//添加本地系扭矩</span><br><span class="line">Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">Vector3 localTorque = new Vector3(0f, 5f, 0f); // 在本地空间内的扭矩</span><br><span class="line">rb.AddRelativeTorque(localTorque);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AddForceAtPosition(Vector3 force, Vector3 position)//在指定位置创造力</span><br></pre></td></tr></table></figure>
+<h4 id="状态控制函数"><a href="#状态控制函数" class="headerlink" title="状态控制函数"></a>状态控制函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sleep()// 让物体进入休眠状态</span><br><span class="line">Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">rb.Sleep();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WakeUp()//唤醒刚体，使其重新参与物理计算</span><br><span class="line">Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">rb.WakeUp();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IsSleeping()// 返回物体是否休眠的状态</span><br><span class="line">Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">bool isSleeping = rb.IsSleeping(); </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DetectCollisions//是否进行碰撞检测</span><br><span class="line">Rigidbody rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">rb.detectCollisions = true;</span><br></pre></td></tr></table></figure>
+<h4 id="物理属性设置函数"><a href="#物理属性设置函数" class="headerlink" title="物理属性设置函数"></a>物理属性设置函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">velocity//速度</span><br><span class="line">angularVelocity//角速度</span><br><span class="line">drag//线性阻力</span><br><span class="line">angularDrag//角阻力</span><br><span class="line">mass//质量</span><br><span class="line">useGravity//是否启用重力</span><br><span class="line">isKinematic//是否是运动学物体</span><br><span class="line">constraints//设置物体约束</span><br><span class="line">Vector:Velocity,angularVelocity</span><br><span class="line">float:drag angulaiDrag mass</span><br><span class="line">bool:useGravity,isKinematic</span><br></pre></td></tr></table></figure>
+<h4 id="位移与旋转"><a href="#位移与旋转" class="headerlink" title="位移与旋转"></a>位移与旋转</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MovePosition(Vector3 position)</span><br><span class="line">MoveRotation(Quaternion rot)</span><br></pre></td></tr></table></figure>
+<h2 id="CharacterController-角色控制器"><a href="#CharacterController-角色控制器" class="headerlink" title="CharacterController 角色控制器"></a>CharacterController 角色控制器</h2><h4 id="移动与碰撞函数"><a href="#移动与碰撞函数" class="headerlink" title="移动与碰撞函数"></a>移动与碰撞函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">move()</span><br><span class="line">CharacterController cc = GetComponent&lt;CharacterController&gt;();</span><br><span class="line">Vector3 move = new Vector3(0, 0, 5f) * Time.deltaTime;</span><br><span class="line">CollisionFlags flag = cc.Move(move);//返回碰撞信息</span><br><span class="line">//None：无碰撞/Sides：侧面碰撞/Above：上方碰撞/Below：下方碰撞（落地）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SimpleMove(Vector3 speed)//与Move类似，但自动添加重力效果</span><br><span class="line">bool SimpleMove(Vector3 speed);//true：落地,flase：在空中</span><br></pre></td></tr></table></figure>
+<h4 id="检测与状态属性"><a href="#检测与状态属性" class="headerlink" title="检测与状态属性"></a>检测与状态属性</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">isGrounded//判断角色是否在地面上</span><br><span class="line">velocity//返回当前速度</span><br><span class="line">enabled//启用或禁用</span><br></pre></td></tr></table></figure>
+<h4 id="物理属性"><a href="#物理属性" class="headerlink" title="物理属性"></a>物理属性</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">height</span><br><span class="line">radius</span><br><span class="line">center</span><br><span class="line">skinwidth</span><br></pre></td></tr></table></figure>
+<h4 id="爬坡设置"><a href="#爬坡设置" class="headerlink" title="爬坡设置"></a>爬坡设置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stepOffset//角色可以跨越的最大台阶高度</span><br><span class="line">slopeLimit//可行走的最大坡度角度</span><br><span class="line">minMoveDistance//忽略的最小位移距离</span><br></pre></td></tr></table></figure>
+<h4 id="碰撞等检测"><a href="#碰撞等检测" class="headerlink" title="碰撞等检测"></a>碰撞等检测</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">detectCollisons//同上</span><br><span class="line">enableOverlapRecovery//是否在卡入障碍物后自动推出</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/10/19/unity%E4%B9%8B%E6%97%85%E4%B8%80%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6/" data-id="cmi5eqke1000s4ovucgpibbad" data-title="Atri的unity之旅(1)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%84%E4%BB%B6/" rel="tag">组件</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/10/20/Atri%E7%9A%84Re%E4%B9%8B%E6%97%85-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Atri的Re之旅(1)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/unity/">unity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fresher/" rel="tag">Fresher</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Re/" rel="tag">Re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rewp/" rel="tag">Rewp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E6%8A%A5/" rel="tag">日报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%84%E4%BB%B6/" rel="tag">组件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 15px;">CTF</a> <a href="/tags/Fresher/" style="font-size: 10px;">Fresher</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Rewp/" style="font-size: 20px;">Rewp</a> <a href="/tags/unity/" style="font-size: 10px;">unity</a> <a href="/tags/%E6%97%A5%E6%8A%A5/" style="font-size: 10px;">日报</a> <a href="/tags/%E7%BB%84%E4%BB%B6/" style="font-size: 10px;">组件</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/11/19/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/14/%E6%97%A5%E6%8A%A5%E2%80%94%E8%AE%B0%E5%BD%95%E6%88%91%E7%9A%84%E6%AF%8F%E4%B8%80%E5%A4%A9/">日报——记录我的每一天</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/11/25%E5%B9%B4Re%E4%BE%8B%E4%BC%9A%E4%BD%9C%E4%B8%9A/">25年Re例会作业</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/10/Atri%E7%9A%84Re%E4%B9%8B%E6%97%85-2/">Atri的Re之旅(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/27/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/">自我介绍</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

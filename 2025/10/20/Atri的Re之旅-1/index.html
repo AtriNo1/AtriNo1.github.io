@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Atri的Re之旅(1) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本章我会带来moectf2025-Re向的非官方WP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Atri的Re之旅(1)">
+<meta property="og:url" content="http://example.com/2025/10/20/Atri%E7%9A%84Re%E4%B9%8B%E6%97%85-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本章我会带来moectf2025-Re向的非官方WP">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/moectf/speed1.png">
+<meta property="og:image" content="http://example.com/moectf/speed2.png">
+<meta property="og:image" content="http://example.com/moectf/speed3.png">
+<meta property="og:image" content="http://example.com/moectf/base1.png">
+<meta property="og:image" content="http://example.com/moectf/base2.png">
+<meta property="og:image" content="http://example.com/moectf/catch1.png">
+<meta property="og:image" content="http://example.com/moectf/catch2.png">
+<meta property="og:image" content="http://example.com/moectf/upx1.png">
+<meta property="og:image" content="http://example.com/moectf/upx2.png">
+<meta property="og:image" content="http://example.com/moectf/upx3.png">
+<meta property="og:image" content="http://example.com/moectf/upx4.png">
+<meta property="article:published_time" content="2025-10-20T07:56:41.000Z">
+<meta property="article:modified_time" content="2025-11-10T11:13:15.812Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Rewp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/moectf/speed1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Atri的Re之旅-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/10/20/Atri%E7%9A%84Re%E4%B9%8B%E6%97%85-1/" class="article-date">
+  <time class="dt-published" datetime="2025-10-20T07:56:41.000Z" itemprop="datePublished">2025-10-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Atri的Re之旅(1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <!-- 这里是摘要部分，以上内容会在首页显示 -->
+<p>本章我会带来moectf2025-Re向的非官方WP</p>
+<span id="more"></span>
+<!-- 这里是文章的剩余内容 -->
+<h2 id="test1-speed"><a href="#test1-speed" class="headerlink" title="test1:speed"></a>test1:speed</h2><p>1，die查壳，发现无壳<br>2,运行exe，发现打开后迅速结束窗口<br>3，打开ida<br><img src="/moectf/speed1.png" alt="ida"><br>4,追踪WinMain函数，发现sleep(1u),设下断点<br><img src="/moectf/speed2.png" alt="ida"><br>5,动态调试<br><img src="/moectf/speed3.png" alt="ida"></p>
+<h2 id="test2-base"><a href="#test2-base" class="headerlink" title="test2:base"></a>test2:base</h2><p>1，die查壳：无壳的PE64文件<br>2，虚拟机运行，发现需要填写flag<br>3，打开ida<br>4，Main函数：<br><img src="/moectf/base1.png" alt="ida"><br>5，用cyberchef翻译base64<br><img src="/moectf/base2.png" alt="cyberchef"></p>
+<h2 id="test3-catch"><a href="#test3-catch" class="headerlink" title="test3:catch"></a>test3:catch</h2><p>1，打开ida，查找可疑字符串<br><img src="/moectf/catch1.png" alt="ida"><br>2,发现字符串位数与moectf{}一致，怀疑是凯撒密码，解密后得到flag<br><img src="/moectf/catch2.png" alt="decrypt"></p>
+<h2 id="test4-upx"><a href="#test4-upx" class="headerlink" title="test4:upx"></a>test4:upx</h2><p>1，根据题目提示，die查壳<br><img src="/moectf/upx1.png" alt="die"><br>2,upx去壳<br><img src="/moectf/upx2.png" alt="upx"><br>3,打开ida，查找可能的字符串，最后发现核心加密在main函数<br><img src="/moectf/upx3.png" alt="upx"><br>4,分析函数，先寻找密文<br><img src="/moectf/upx4.png" alt="upx"><br>5，将密文重新组合后写出脚本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">   unsigned char encrypt[]=&#123;</span><br><span class="line">    0x00000023, 0x0000002B, 0x00000027, 0x00000036,</span><br><span class="line">    0x00000033, 0x0000003C, 0x00000003, 0x00000048,</span><br><span class="line">    0x00000064, 0x0000000B, 0x0000001D, 0x00000076,</span><br><span class="line">    0x0000007B, 0x00000010, 0x0000000B, 0x0000003A,</span><br><span class="line">    0x0000003F, 0x00000065, 0x00000076, 0x00000029,</span><br><span class="line">    0x00000015, 0x00000037, 0x0000001C, 0x0000000A,</span><br><span class="line">    0x00000008, 0x00000021, 0x0000003E, 0x0000003C,</span><br><span class="line">    0x0000003D, 0x00000016, 0x0000000B, 0x00000024,</span><br><span class="line">    41,36,86</span><br><span class="line">   &#125;;//注意密文的顺序</span><br><span class="line">   unsigned char flag[]=&#123;&#125;;</span><br><span class="line">   flag[35]=&#x27;\n&#x27;;//根据提示，我们可以得知flag的最后一位是换行符</span><br><span class="line">   for(int i=34;i&gt;=0;i--)</span><br><span class="line">   &#123;</span><br><span class="line">    flag[i]=encrypt[i]^0x21^flag[i+1];</span><br><span class="line">   &#125;</span><br><span class="line">   for(int i=0;i&lt;=34;i++)</span><br><span class="line">   &#123;</span><br><span class="line">    cout&lt;&lt;flag[i];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/10/20/Atri%E7%9A%84Re%E4%B9%8B%E6%97%85-1/" data-id="cmi5eqkdq00044ovu6cr5hkut" data-title="Atri的Re之旅(1)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rewp/" rel="tag">Rewp</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/10/27/%E8%AE%B0%E4%B8%80%E9%81%93%E9%80%86%E5%90%91%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          记一道逆向题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/10/19/unity%E4%B9%8B%E6%97%85%E4%B8%80%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Atri的unity之旅(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/unity/">unity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fresher/" rel="tag">Fresher</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Re/" rel="tag">Re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rewp/" rel="tag">Rewp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E6%8A%A5/" rel="tag">日报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%84%E4%BB%B6/" rel="tag">组件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 15px;">CTF</a> <a href="/tags/Fresher/" style="font-size: 10px;">Fresher</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Rewp/" style="font-size: 20px;">Rewp</a> <a href="/tags/unity/" style="font-size: 10px;">unity</a> <a href="/tags/%E6%97%A5%E6%8A%A5/" style="font-size: 10px;">日报</a> <a href="/tags/%E7%BB%84%E4%BB%B6/" style="font-size: 10px;">组件</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/11/19/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/14/%E6%97%A5%E6%8A%A5%E2%80%94%E8%AE%B0%E5%BD%95%E6%88%91%E7%9A%84%E6%AF%8F%E4%B8%80%E5%A4%A9/">日报——记录我的每一天</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/11/25%E5%B9%B4Re%E4%BE%8B%E4%BC%9A%E4%BD%9C%E4%B8%9A/">25年Re例会作业</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/10/Atri%E7%9A%84Re%E4%B9%8B%E6%97%85-2/">Atri的Re之旅(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/27/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/">自我介绍</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
